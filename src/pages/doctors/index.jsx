@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from "axios";
-import Menu from './components/Menu';
-import Doctor from './components/Doctor';
+import Menu from '../components/Menu';
+import Doctor from '../components/Doctor';
 
 function App() {
   const [posts, setPosts] = useState([]);

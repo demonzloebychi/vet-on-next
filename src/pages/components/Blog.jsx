@@ -47,14 +47,15 @@ export default function Doctor({post}){
     <>
     <Link key={post.id} href={`/blog/${post.id}`} className="blog-item">
       {featuredImage && <img src={featuredImage} alt={post.title.rendered} />}
-      <div className="info">
-        <h2 className=""> {post.title.rendered}</h2>
-        <div className="date">{postDate}</div>
+      <h2 className="blog-name"> {post.title.rendered}</h2>
+      <div className="date">{postDate}</div>
+      {/* <div className="info"> */}
+      
         {/* <div className="excerpt" dangerouslySetInnerHTML={{ __html: post.excerpt.rendered}} /> */}
         {/* <div className="info-more">
         </div> */}
 
-      </div>
+      {/* </div> */}
 
     </Link>
     </>
