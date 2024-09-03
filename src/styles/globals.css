@@ -141,6 +141,15 @@ a {
   line-clamp: 3;
   box-orient: vertical;
 }
+.doctor-item{
+  max-width: 290px;
+  height: 100%;
+  background-color: #e2e2e2;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+}
 .blog-item{
   max-width: 290px;
   height: 350px;
@@ -155,9 +164,7 @@ a {
   padding: 10px 20px;
 
 }
-.info{
 
-}
 .date{
   padding: 10px 20px;
 
@@ -205,4 +212,8 @@ a {
   display: flex;
   border-radius: 10px;
   border: 1px solid #00000010;
+}
+
+h1{
+  margin: 20px 0;
 }

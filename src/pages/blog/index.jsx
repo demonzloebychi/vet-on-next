@@ -3,10 +3,28 @@ import axios from "axios";
 import Menu from '../components/Menu';
 import Blog from "../components/Blog";
 
-function App({ initialPosts, totalPages }) {
-  const [posts, setPosts] = useState(initialPosts);
+function App() {
+  const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchInitialPosts = async () => {
+      setIsLoading(true);
+      try {
+        const res = await axios.get(`https://vethome24.ru/wp-json/wp/v2/blog?per_page=9&page=1`);
+        const totalPages = parseInt(res.headers['x-wp-totalpages']);
+        setPosts(res.data);
+        setTotalPages(totalPages);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+      setIsLoading(false);
+    };
+
+    fetchInitialPosts();
+  }, []);
 
   const fetchMorePosts = async () => {
     if (currentPage < totalPages) {
@@ -38,29 +56,6 @@ function App({ initialPosts, totalPages }) {
       )}
     </div>
   );
-}
-
-export async function getServerSideProps(context) {
-  try {
-    const res = await axios.get(`https://vethome24.ru/wp-json/wp/v2/blog?per_page=9&page=1`);
-    const totalPages = parseInt(res.headers['x-wp-totalpages']);
-    const initialPosts = res.data;
-
-    return {
-      props: {
-        initialPosts,
-        totalPages,
-      },
-    };
-  } catch (error) {
-    console.error('Error fetching posts:', error);
-    return {
-      props: {
-        initialPosts: [],
-        totalPages: 0,
-      },
-    };
-  }
 }
 
 export default App;

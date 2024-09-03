@@ -45,16 +45,18 @@ export default function Doctor({post}){
 
   return post && (
     <>
-    <Link key={post.id} href={`/doctors/${post.id}`} className="blog-item">
+    <Link key={post.id} href={`/doctors/${post.id}`} className="doctor-item">
       {featuredImage && <img src={featuredImage} alt={post.title.rendered} />}
-      <div className="info">
-        <h2 className=""> {post.title.rendered}</h2>
+      <h2 className="blog-name"> {post.title.rendered}</h2>
+
+      
+      {/* <div className="info"> */}
         {/* <div className="date">{postDate}</div> */}
         {/* <div className="excerpt" dangerouslySetInnerHTML={{ __html: post.excerpt.rendered}} /> */}
         {/* <div className="info-more">
         </div> */}
 
-      </div>
+      {/* </div> */}
 
     </Link>
     </>
