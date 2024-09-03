@@ -1,4 +1,4 @@
-// pages/doctors/[id].js
+// pages/doctors/[slug].js
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Menu from '../components/Menu';
@@ -14,8 +14,8 @@ const Doctor = ({ doctor }) => {
 
   return (
     <div className='container'>
-      <Menu></Menu>
-      <BackButton></BackButton>
+      <Menu />
+      <BackButton />
       <h1>{doctor.title.rendered}</h1>
       <div className='blog__post-text' dangerouslySetInnerHTML={{ __html: doctor.content.rendered }} />
     </div>
@@ -27,18 +27,21 @@ export async function getStaticPaths() {
   const res = await axios.get('https://vethome24.ru/wp-json/wp/v2/blog');
   const doctors = res.data;
 
-  // Создаем массив путей для статической генерации
+  // Создаем массив путей для статической генерации на основе slug
   const paths = doctors.map((doctor) => ({
-    params: { id: doctor.id.toString() },
+    params: { slug: doctor.slug }, // Используем slug напрямую
   }));
 
   return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {
-  // Получаем данные доктора по ID
-  const res = await axios.get(`https://vethome24.ru/wp-json/wp/v2/blog/${params.id}`);
-  const doctor = res.data;
+  // Получаем данные доктора по slug
+  const res = await axios.get('https://vethome24.ru/wp-json/wp/v2/blog');
+  const doctors = res.data;
+
+  // Находим доктора по slug
+  const doctor = doctors.find((doc) => doc.slug === params.slug);
 
   return {
     props: { doctor },

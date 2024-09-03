@@ -45,7 +45,7 @@ export default function Doctor({post}){
 
   return post && (
     <>
-    <Link key={post.id} href={`/doctors/${post.id}`} className="doctor-item">
+    <Link key={post.id} href={`/doctors/${post.slug}`} className="doctor-item">
       {featuredImage && <img src={featuredImage} alt={post.title.rendered} />}
       <h2 className="blog-name"> {post.title.rendered}</h2>
 

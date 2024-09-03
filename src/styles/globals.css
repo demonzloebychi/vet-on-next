@@ -217,3 +217,17 @@ a {
 h1{
   margin: 20px 0;
 }
+
+.service-item{
+  display: flex;
+  background-color: #e2e2e2;
+  border-radius: 10px;
+  padding: 10px 15px;
+
+}
+.service-item img{
+  width: 30px;
+}
+.service-item h2{
+  font-size: 20px;
+}

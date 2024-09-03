@@ -2,7 +2,7 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import Link from 'next/link'
 
-export default function Doctor({post}){
+export default function Service({post}){
 
 
   const [featuredImage, setFeaturedImage] = useState();
@@ -18,15 +18,15 @@ export default function Doctor({post}){
         setFeaturedImage(response.data.source_url);
       }
 
-      if(post.date){
-        const dateObj = new Date(post.date);
-        const formatedDate = dateObj.toLocaleDateString("ru-RU",{
-          year: "numeric",
-          month: "long",
-          day: "numeric"
-        });
-        setPostDate(formatedDate);
-      }
+      // if(post.date){
+      //   const dateObj = new Date(post.date);
+      //   const formatedDate = dateObj.toLocaleDateString("ru-RU",{
+      //     year: "numeric",
+      //     month: "long",
+      //     day: "numeric"
+      //   });
+      //   setPostDate(formatedDate);
+      // }
 
       if(post.link){
 
@@ -45,12 +45,13 @@ export default function Doctor({post}){
 
   return post && (
     <>
-    <Link key={post.id} href={`/blog/${post.slug}`} className="blog-item">
+    <Link key={post.id} href={`/services/${post.slug}`} className="service-item">
       {featuredImage && <img src={featuredImage} alt={post.title.rendered} />}
       <h2 className="blog-name"> {post.title.rendered}</h2>
-      <div className="date">{postDate}</div>
-      {/* <div className="info"> */}
+
       
+      {/* <div className="info"> */}
+        {/* <div className="date">{postDate}</div> */}
         {/* <div className="excerpt" dangerouslySetInnerHTML={{ __html: post.excerpt.rendered}} /> */}
         {/* <div className="info-more">
         </div> */}

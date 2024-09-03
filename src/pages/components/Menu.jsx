@@ -19,6 +19,9 @@ export default function Menu(){
             <li>
                 <Link href='/blog'>Блог</Link>
             </li>
+            <li>
+                <Link href='/services'>Услуги</Link>
+            </li>
         </ul>
     </>
   

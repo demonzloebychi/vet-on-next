@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import Menu from '../components/Menu';
-import Doctor from "../components/Doctor";
+import Service from "../components/Service";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -13,7 +13,7 @@ function App() {
     const fetchInitialPosts = async () => {
       setIsLoading(true);
       try {
-        const res = await axios.get(`https://vethome24.ru/wp-json/wp/v2/doctors?per_page=9&page=1`);
+        const res = await axios.get(`https://vethome24.ru/wp-json/wp/v2/services?per_page=99&page=1`);
         const totalPages = parseInt(res.headers['x-wp-totalpages']);
         setPosts(res.data);
         setTotalPages(totalPages);
@@ -30,7 +30,7 @@ function App() {
     if (currentPage < totalPages) {
       setIsLoading(true);
       try {
-        const res = await axios.get(`https://vethome24.ru/wp-json/wp/v2/doctors?per_page=9&page=${currentPage + 1}`);
+        const res = await axios.get(`https://vethome24.ru/wp-json/wp/v2/services?per_page=17&page=${currentPage + 1}`);
         setPosts((prevPosts) => [...prevPosts, ...res.data]);
         setCurrentPage(currentPage + 1);
       } catch (error) {
@@ -43,10 +43,10 @@ function App() {
   return (
     <div className='container'>
       <Menu />
-      <h1>Врачи</h1>
+      <h1>Услуги</h1>
       <div className="blog-items">
         {posts.map((item) => (
-          <Doctor key={item.id} post={item} />
+          <Service key={item.id} post={item} />
         ))}
       </div>
       {currentPage < totalPages && (
@@ -56,7 +56,6 @@ function App() {
       )}
     </div>
   );
- 
 }
 
 export default App;
