@@ -2,7 +2,7 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import Link from 'next/link'
 
-export default function Blog({post}){
+export default function Doctor({post}){
 
 
   const [featuredImage, setFeaturedImage] = useState();
@@ -43,16 +43,13 @@ export default function Blog({post}){
     getImage();
   }, [post]);
 
-  
   return post && (
     <>
-    <Link 
-
-    className="blog-item">
+    <Link key={post.id} href={`/blog/${post.id}`} className="blog-item">
       {featuredImage && <img src={featuredImage} alt={post.title.rendered} />}
       <div className="info">
         <h2 className=""> {post.title.rendered}</h2>
-        {/* <div className="date">{postDate}</div> */}
+        <div className="date">{postDate}</div>
         {/* <div className="excerpt" dangerouslySetInnerHTML={{ __html: post.excerpt.rendered}} /> */}
         {/* <div className="info-more">
         </div> */}
@@ -63,5 +60,4 @@ export default function Blog({post}){
     </>
   
   )
-
 }

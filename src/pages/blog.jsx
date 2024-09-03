@@ -13,7 +13,7 @@ function App() {
   const fetchPosts = async (page = 1) => {
     setIsLoading(true);
     try {
-      const res = await axios.get(`https://vethome24.ru/wp-json/wp/v2/blog?per_page=20&page=${page}`);
+      const res = await axios.get(`https://vethome24.ru/wp-json/wp/v2/blog?per_page=99&page=${page}`);
       setPosts((prevPosts) => [...prevPosts, ...res.data]);
       const totalPosts = parseInt(res.headers['x-wp-total']);
       const perPage = parseInt(res.headers['x-wp-totalpages']);
@@ -45,7 +45,7 @@ function App() {
   }, [currentPage, totalPages, isLoading]);
 
   return (
-    <>
+    <div className='container'>
       <Menu />
       <h1>Блог</h1>
       <div className="blog-items">
@@ -54,7 +54,7 @@ function App() {
         ))}
       </div>
       {isLoading && <div className='load'>Загрузка...</div>}
-    </>
+    </div>
   );
 }
 

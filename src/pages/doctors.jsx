@@ -45,7 +45,7 @@ function App() {
   }, [currentPage, totalPages, isLoading]);
 
   return (
-    <>
+    <div className='container'>
       <Menu />
       <h1>Врачи</h1>
       <div className="blog-items">
@@ -54,7 +54,7 @@ function App() {
         ))}
       </div>
       {isLoading && <div className='load'>Загрузка...</div>}
-    </>
+    </div>
   );
 }
 
